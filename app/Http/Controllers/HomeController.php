@@ -23,7 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user_id=auth()->user()->id;
-        return view('home', compact('user_id'));
+        return view('home');
     }
 }

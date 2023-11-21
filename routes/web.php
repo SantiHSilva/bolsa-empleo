@@ -21,3 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\TodoController::class, 'index'])->name('home')->middleware('auth');
+Route::post('/store', [App\Http\Controllers\TodoController::class, 'store'])->name('store')->middleware('auth');
+Route::delete('/delete/{id}', [App\Http\Controllers\TodoController::class, 'destroy'])->name('delete')->middleware('auth');

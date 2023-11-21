@@ -7,8 +7,7 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>
                 <div class="card-body">
-                    You are logged in! {{ Auth::user()->name }} {{$user_id}}
-                    @include('todo.all')
+                    You are logged in! {{ Auth::user()->name }}
                 </div>
             </div>
         </div>

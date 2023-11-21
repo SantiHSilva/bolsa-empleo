@@ -8,9 +8,17 @@
                 <div class="card-header">Dashboard</div>
                 <div class="card-body">
                     You are logged in! {{ Auth::user()->name }} {{ Auth::user()->id }}
-                    @include('todo.all')
                 </div>
             </div>
+        </div>
+
+        <div>
+            <form action="{{ route("store") }}" method="POST">
+                @csrf
+                <label for="">Ingrese la tarea rey</label>
+                <input type="text" name="todo" placeholder="ingrese la tarea :V">
+                <button>enviar a la bd</button>
+            </form>
         </div>
 
         <div class="table-responsive">
@@ -23,19 +31,11 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($todos as $todo)
                     <tr>
-                      <th>xd</th>
-                      <td>Mark</td>
-        
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>xd</td>
-                    </tr>
+                      <th>{{ $todo->id }}</th>
+                      <td>{{ $todo->todo }}</td>
+                    @endforeach
                   </tbody>
             </table>
           </div>

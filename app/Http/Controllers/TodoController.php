@@ -10,9 +10,8 @@ class TodoController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        // Verificar si el usuario tiene tareas
-        $todo = Todo::all();
-        return view('home', compact('todo'));
+        $todos = Todo::where('users_id', $user_id)->get();
+        return view('todo.all', compact('todos'));
     }
 
 
@@ -25,12 +24,12 @@ class TodoController extends Controller
 
     public function store(Request $request)
     {
-        //
-        $this->validate($request, [
-            'todo' => 'required'
-        ]);
-        $todo = Todo::create($request->all());
-        return redirect()->back()->with('message', 'Todo created successfully');
+        $user_id = auth()->user()->id;
+        $todo = new Todo();
+        $todo->todo = $request->todo;
+        $todo->users_id = $user_id;
+        $todo->save();
+        return redirect()->back();
     }
 
 
