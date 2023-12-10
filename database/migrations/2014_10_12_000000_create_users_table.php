@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id_registro');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('apellido');
             $table->date('fecha_nacimiento');
@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
 
-            $table->unsignedInteger('id_usuario');
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
+            // $table->unsignedInteger('id_usuario');
+            // $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
 
             $table->timestamps();
         });

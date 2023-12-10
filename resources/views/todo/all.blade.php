@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>
                 <div class="card-body">
-                    You are logged in! {{ Auth::user()->name }} {{ Auth::user()->id }}
+                    You are logged in! {{ Auth::user()->nombre }} {{ Auth::user()->id }}
                 </div>
             </div>
         </div>
