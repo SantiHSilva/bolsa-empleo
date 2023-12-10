@@ -18,6 +18,9 @@ class CreatePerfilTable extends Migration
 
             $table->string('presentacion');
 
+            $table->string('skills')->nullable(); // Inglés, PHP, etc
+            $table->string('roles')->nullable(); // admin, user, etc
+
             // Add this line to create the foreign key, and the relationship
             $table->unsignedInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users');

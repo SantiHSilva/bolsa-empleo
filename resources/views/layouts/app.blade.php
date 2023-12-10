@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div id="app">
@@ -75,13 +78,11 @@
                                     <form id="create-perfil-form" action="{{ route('perfil.create') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                        
-                                    {{-- <a class="dropdown-item" href="{{ route('perfil.create') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('create-perfil-form').submit();">
-                                        {{ __('Cerrar Sesión') }}
-                                    </a> --}}
 
+                                    <a class="dropdown-item" href="{{ route('skills.index') }}">
+                                        Skills
+                                    </a>
+                                        
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -105,5 +106,7 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('js')
 </body>
 </html>
