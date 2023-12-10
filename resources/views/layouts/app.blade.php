@@ -71,8 +71,22 @@
                                         } else {
                                             echo '<a class="dropdown-item" href="
                                             '. route('perfil.view') .'"
-                                            ">Ver Perfil</a>';
+                                            ">Ver mi Perfil</a>';
                                         }                            
+                                    @endphp
+
+                                    {{-- Crear Empresa --}}
+                                    @php
+                                        $empresa = App\Models\Empresa::where('users_id', Auth::user()->id)->first();
+                                        if ($empresa == null) {
+                                            echo '<a class="dropdown-item" href="
+                                            '. route('empresa.create') .'"
+                                            ">Crear perfil Empresa</a>';
+                                        } else {
+                                            echo '<a class="dropdown-item" href="
+                                            '. route('empresa.index') .'"
+                                            ">Ver mi Empresa</a>';
+                                        }
                                     @endphp
 
                                     <form id="create-perfil-form" action="{{ route('perfil.create') }}" method="POST" class="d-none">

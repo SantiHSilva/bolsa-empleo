@@ -24,10 +24,18 @@ Route::get('/home', [App\Http\Controllers\TodoController::class, 'index'])->name
 Route::post('/store', [App\Http\Controllers\TodoController::class, 'store'])->name('store')->middleware('auth');
 Route::delete('/delete/{id}', [App\Http\Controllers\TodoController::class, 'destroy'])->name('delete')->middleware('auth');
 
+// Perfil
+
 Route::post('/perfil/create', [App\Http\Controllers\PerfilController::class, 'create'])->name('perfil.create')->middleware('auth');
 Route::get('/perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil.view')->middleware('auth');
 Route::get('/perfil/edit', [App\Http\Controllers\PerfilController::class, 'edit'])->name('perfil.edit')->middleware('auth');
 Route::put('/perfil/update', [App\Http\Controllers\PerfilController::class, 'update'])->name('perfil.update')->middleware('auth');
+
+// Empresa
+
+Route::get('/empresa/create', [App\Http\Controllers\EmpresaController::class, 'create'])->name('empresa.create')->middleware('auth');
+Route::post('/empresa/store', [App\Http\Controllers\EmpresaController::class, 'store'])->name('empresa.store')->middleware('auth');
+Route::get('/empresa', [App\Http\Controllers\EmpresaController::class, 'index'])->name('empresa.index')->middleware('auth');
 
 // Skills CRUD
 
