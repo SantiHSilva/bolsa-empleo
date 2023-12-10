@@ -7,35 +7,29 @@ use Illuminate\Http\Request;
 
 class PerfilController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $user_id  = auth()->user()->id;
+        $perfil = Perfil::where('users_id', $user_id)->first();
+        return view('perfil.miperfil', compact('perfil'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $usuario = auth()->user();
+        $user_id = $usuario->id;
+        $perfil = new Perfil();
+        $perfil->presentacion = "Hola, soy " . $usuario->nombre . " " . $usuario->apellido .  " y esta es mi presentación";
+        $perfil->users_id = $user_id;
+        $perfil->save();
+        return redirect()->back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -49,27 +43,20 @@ class PerfilController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Perfil  $perfil
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Perfil $perfil)
+    public function edit()
     {
-        //
+        $user_id  = auth()->user()->id;
+        $perfil = Perfil::where('users_id', $user_id)->first();
+        return view('perfil.editar', compact('perfil'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Perfil  $perfil
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Perfil $perfil)
+    public function update(Request $request)
     {
-        //
+        $user_id  = auth()->user()->id;
+        $perfil = Perfil::where('users_id', $user_id)->first();
+        $perfil->presentacion = $request->presentacion;
+        $perfil->save();
+        return redirect()->route('perfil.view')->with('mensaje', 'Perfil actualizado correctamente');
     }
 
     /**

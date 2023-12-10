@@ -56,11 +56,35 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->nombre . " " . Auth::user()->apellido }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    
+                                    {{-- Crear Perfil --}}
+                                    @php
+                                        $perfil = App\Models\Perfil::where('users_id', Auth::user()->id)->first();
+                                        if ($perfil == null) {
+                                            echo '<a class="dropdown-item" href="#"
+                                            onclick="event.preventDefault(); document.getElementById(\'create-perfil-form\').submit();"
+                                            >Crear Perfil</a>';
+                                        } else {
+                                            echo '<a class="dropdown-item" href="
+                                            '. route('perfil.view') .'"
+                                            ">Ver Perfil</a>';
+                                        }                            
+                                    @endphp
+
+                                    <form id="create-perfil-form" action="{{ route('perfil.create') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                        
+                                    {{-- <a class="dropdown-item" href="{{ route('perfil.create') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     document.getElementById('create-perfil-form').submit();">
+                                        {{ __('Cerrar Sesión') }}
+                                    </a> --}}
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>
 
@@ -68,6 +92,8 @@
                                         @csrf
                                     </form>
                                 </div>
+
+                                
                             </li>
                         @endguest
                     </ul>
