@@ -65,19 +65,25 @@
                                 @endforeach
                                 </ol>
                                 @endif
-
                         </div>
                         <div class="col border-start">
                             <h4 class="text-center p-2">
                                 Roles
                             </h4>
         
+                            @if ($perfil->roles == null)
+                            <h4 class="text-center">
+                                No tiene roles (Usuario)
+                            </h4>
+                            @else
                             <ol>
-                                <li>Julio</li>
-                                <li>Carmen</li>
-                                <li>Ignacio</li>
-                                <li>Elena</li>
+                            @foreach (explode(",", $perfil->roles) as $rol)
+                                <li>
+                                    {{ $rol }}
+                                </li>
+                            @endforeach
                             </ol>
+                            @endif
                         </div>
                     </div>
 

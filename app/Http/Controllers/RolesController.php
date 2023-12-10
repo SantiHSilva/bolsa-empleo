@@ -7,79 +7,46 @@ use Illuminate\Http\Request;
 
 class RolesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $roles = Roles::all();
+        return view('roles.index', compact('roles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $roles = new Roles();
+        $roles->nombre = $request->rol;
+        $roles->save();
+        return redirect()->back()->with('mensaje', 'Role: "' . $request->rol . '"; creado correctamente');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Roles  $roles
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Roles $roles)
+    public function edit($id)
     {
-        //
+        $role = Roles::find($id);
+        return view('roles.editar', compact('role'));   
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Roles  $roles
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Roles $roles)
+    public function update(Request $request, $id)
     {
-        //
+        $role = Roles::find($id);
+        $role->nombre = $request->rol;
+        $role->save();
+        return redirect()->route('roles.index')->with('mensaje', 'Role: "' . $request->rol . '"; actualizado correctamente');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Roles  $roles
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Roles $roles)
+    public function destroy($id)
     {
-        //
-    }
+        $role = Roles::find($id);
+        $role->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Roles  $roles
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Roles $roles)
-    {
-        //
+        // TODO: Eliminar la relación con los usuarios
+
+        return redirect()->back()->with('eliminar', true);
     }
 }

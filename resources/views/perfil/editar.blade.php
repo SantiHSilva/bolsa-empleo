@@ -85,17 +85,37 @@
                                         </div>
                                 </section>
                             </div>
-                            <div class="col border-start">
+                            <div class="col border-start p-2">
                                 <h4 class="text-center p-2">
                                     Roles
                                 </h4>
             
-                                <ol>
-                                    <li>Julio</li>
-                                    <li>Carmen</li>
-                                    <li>Ignacio</li>
-                                    <li>Elena</li>
-                                </ol>
+                                <section class="d-flex justify-content-center">
+                                    <div class="btn-group">
+                                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                            Lista de Roles
+                                        </button>
+                                        <ul class="dropdown-menu"
+                                            {{-- Show 5 con barra de desplazamiento --}}
+                                            style="height: 150px; overflow-y: scroll;"
+                                            >
+                                            @foreach ($roles as $item)
+                                                <li>
+                                                    <section class="dropdown-item">
+                                                        @if (in_array($item->nombre, explode(",", $perfil->roles)))
+                                                            <input class="form-check-input" type="checkbox" value="" id="{{$item->id}}" name={{$item->nombre}} checked>
+                                                        @else
+                                                            <input class="form-check-input" type="checkbox" value="" id="{{$item->id}}" name={{$item->nombre}}>
+                                                        @endif
+                                                        <label class="form-check-label border" for="{{$item->id}}">
+                                                            {{$item->nombre}}
+                                                        </label>
+                                                    </section>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                            </section>
                             </div>
                         </div>
 

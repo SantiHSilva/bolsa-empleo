@@ -82,6 +82,10 @@
                                     <a class="dropdown-item" href="{{ route('skills.index') }}">
                                         Skills
                                     </a>
+
+                                    <a class="dropdown-item" href="{{ route('roles.index') }}">
+                                        Roles
+                                    </a>
                                         
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
