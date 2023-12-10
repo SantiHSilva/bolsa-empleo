@@ -52,14 +52,20 @@
                             <h4 class="text-center p-2">
                                 Skills
                             </h4>
-        
-                            <ol>
+                                @if ($perfil->skills == null)
+                                <h4 class="text-center">
+                                    No hay skills registradas
+                                </h4>
+                                @else
+                                <ol>
                                 @foreach (explode(",", $perfil->skills) as $skill)
                                     <li>
                                         {{ $skill }}
                                     </li>
                                 @endforeach
-                            </ol>
+                                </ol>
+                                @endif
+
                         </div>
                         <div class="col border-start">
                             <h4 class="text-center p-2">

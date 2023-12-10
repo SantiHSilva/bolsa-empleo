@@ -52,7 +52,6 @@ class SkillsController extends Controller
             $skillstemp = array_diff($skillstemp, [$skill->nombre]);
             $user->skills = implode(",", $skillstemp);
             $user->save();
-
         }
 
         $skill->delete();

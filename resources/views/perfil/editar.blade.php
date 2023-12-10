@@ -60,7 +60,7 @@
 
                                 <section class="d-flex justify-content-center">
                                         <div class="btn-group">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                                 Lista de Skills
                                             </button>
                                             <ul class="dropdown-menu"
